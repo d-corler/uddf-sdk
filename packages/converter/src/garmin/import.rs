@@ -653,11 +653,11 @@ pub fn create_waypoint(
     if let Some(temperature) = temperature {
         let mut should_add_temperature = true;
 
-        if let Some(last_temperature) = last_temperature
-            && last_temperature == temperature
-        {
-            // Skip adding temperature
-            should_add_temperature = false;
+        if let Some(last_temperature) = last_temperature {
+            if last_temperature == temperature {
+                // Skip adding temperature
+                should_add_temperature = false;
+            }
         }
 
         if should_add_temperature {
