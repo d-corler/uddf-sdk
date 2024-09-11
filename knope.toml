@@ -2,17 +2,17 @@
 versioned_files = ["Cargo.toml"]
 changelog = "CHANGELOG.md"
 
-[[package.assets]]
-path = "artifacts/uddf-sdk-x86_64-unknown-linux-musl.tgz"
+# [[package.assets]]
+# path = "artifacts/uddf-sdk-x86_64-unknown-linux-musl.tgz"
 
-[[package.assets]]
-path = "artifacts/uddf-sdk-x86_64-pc-windows-msvc.tgz"
+# [[package.assets]]
+# path = "artifacts/uddf-sdk-x86_64-pc-windows-msvc.tgz"
 
-[[package.assets]]
-path = "artifacts/uddf-sdk-x86_64-apple-darwin.tgz"
+# [[package.assets]]
+# path = "artifacts/uddf-sdk-x86_64-apple-darwin.tgz"
 
-[[package.assets]]
-path = "artifacts/uddf-sdk-aarch64-apple-darwin.tgz"
+# [[package.assets]]
+# path = "artifacts/uddf-sdk-aarch64-apple-darwin.tgz"
 
 [[workflows]]
 name = "document-change"
@@ -58,6 +58,17 @@ name = "release"
 
 [[workflows.steps]]
 type = "Release"
+
+[[workflows]]
+name = "get-version"
+help_text = "Get the current version of the project"
+
+[[workflows.steps]]
+type = "Command"
+command = "echo \"$version\""
+
+[workflows.steps.variables]
+"$version" = "Version"
 
 [github]
 owner = "d-corler"
