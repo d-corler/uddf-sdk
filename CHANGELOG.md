@@ -1,3 +1,9 @@
+## 0.2.2 (2024-09-11)
+
+### Fixes
+
+#### manifest unknown category
+
 ## 0.2.1 (2024-09-11)
 
 ### Features
