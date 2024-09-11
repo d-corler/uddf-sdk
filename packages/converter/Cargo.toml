@@ -1,0 +1,10 @@
+[package]
+name = "uddf-sdk-converter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = { version = "0.4.38", default-features = false }
+fitparser = "0.7.0"
+uddf-sdk-entities = { path = "../entities" }
+uddf-sdk-utils = { path = "../utils" }
