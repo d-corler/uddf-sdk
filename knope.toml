@@ -15,6 +15,12 @@ path = "artifacts/uddf-sdk-x86_64-apple-darwin.tgz"
 path = "artifacts/uddf-sdk-aarch64-apple-darwin.tgz"
 
 [[workflows]]
+name = "document-change"
+
+[[workflows.steps]]
+type = "CreateChangeFile"
+
+[[workflows]]
 name = "prepare-release"
 
 [[workflows.steps]]

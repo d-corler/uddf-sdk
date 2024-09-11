@@ -1,0 +1,5 @@
+---
+default: major
+---
+
+# First release
