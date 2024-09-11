@@ -1,0 +1,58 @@
+[package]
+versioned_files = ["Cargo.toml"]
+changelog = "CHANGELOG.md"
+
+[[package.assets]]
+path = "artifacts/uddf-sdk-x86_64-unknown-linux-musl.tgz"
+
+[[package.assets]]
+path = "artifacts/uddf-sdk-x86_64-pc-windows-msvc.tgz"
+
+[[package.assets]]
+path = "artifacts/uddf-sdk-x86_64-apple-darwin.tgz"
+
+[[package.assets]]
+path = "artifacts/uddf-sdk-aarch64-apple-darwin.tgz"
+
+[[workflows]]
+name = "prepare-release"
+
+[[workflows.steps]]
+type = "Command"
+command = "git switch -c release"
+
+[[workflows.steps]]
+type = "PrepareRelease"
+
+[[workflows.steps]]
+type = "Command"
+command = "git commit -m \"chore: prepare release $version\""
+
+[[workflows.steps]]
+type = "Command"
+command = "git push --force --set-upstream origin release"
+
+[workflows.steps.variables]
+"$version" = "Version"
+
+[[workflows.steps]]
+type = "CreatePullRequest"
+base = "main"
+
+[workflows.steps.title]
+template = "chore: prepare release $version"
+variables = { "$version" = "Version" }
+
+[workflows.steps.body]
+template = "$changelog"
+variables = { "$changelog" = "ChangelogEntry" }
+
+[[workflows]]
+name = "release"
+
+[[workflows.steps]]
+type = "Release"
+
+[github]
+owner = "d-corler"
+repo = "uddf-sdk"

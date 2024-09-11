@@ -1,43 +1,43 @@
 use chrono::{DateTime, Utc};
 use fitparser::FitDataRecord;
-use uddf_sdk_entities::entities::{
-    contact::builder::ContactBuilder,
-    dive::builder::DiveBuilder,
-    dive_base::builder::DiveBaseBuilder,
-    dive_computer::{builder::DiveComputerBuilder, structure::DiveComputer},
-    dive_site::{builder::DiveSiteBuilder, structure::DiveSite},
-    diver::{builder::DiverBuilder, structure::Diver},
-    equipment::{builder::EquipmentBuilder, structure::Equipment_},
-    first_name::builder::FirstNameBuilder,
-    gas_definitions::{builder::GasDefinitionsBuilder, structure::GasDefinitions},
-    generator::{
-        builder::GeneratorBuilder,
-        structure::{Generator, GeneratorType},
-    },
-    geography::builder::GeographyBuilder,
-    information_after_dive::builder::InformationAfterDiveBuilder,
-    information_before_dive::builder::InformationBeforeDiveBuilder,
-    last_name::builder::LastNameBuilder,
-    link::builder::LinkBuilder,
-    maker::{builder::MakerBuilder, structure::Maker},
-    manufacturer::builder::ManufacturerBuilder,
-    mix::builder::MixBuilder,
-    owner::builder::OwnerBuilder,
-    personal::builder::PersonalBuilder,
-    profile_data::{builder::ProfileDataBuilder, structure::ProfileData},
-    repetition_group::builder::RepetitionGroupBuilder,
-    samples::builder::SamplesBuilder,
-    site::builder::SiteBuilder,
-    tank_data::builder::TankDataBuilder,
-    tank_pressure::builder::TankPressureBuilder,
-    uddf::{builder::UddfBuilder, structure::Uddf},
-    waypoint::{builder::WaypointBuilder, structure::Waypoint},
-};
-use uddf_sdk_utils::math::{
-    convert_bar_to_pascal, convert_celsius_to_kelvin, semicircles_to_degrees,
-};
 
-use crate::constants::{UDDF_VERSION, UDDF_XMLNS};
+use crate::{
+    converter::constants::{UDDF_VERSION, UDDF_XMLNS},
+    entities::{
+        contact::builder::ContactBuilder,
+        dive::builder::DiveBuilder,
+        dive_base::builder::DiveBaseBuilder,
+        dive_computer::{builder::DiveComputerBuilder, structure::DiveComputer},
+        dive_site::{builder::DiveSiteBuilder, structure::DiveSite},
+        diver::{builder::DiverBuilder, structure::Diver},
+        equipment::{builder::EquipmentBuilder, structure::Equipment_},
+        first_name::builder::FirstNameBuilder,
+        gas_definitions::{builder::GasDefinitionsBuilder, structure::GasDefinitions},
+        generator::{
+            builder::GeneratorBuilder,
+            structure::{Generator, GeneratorType},
+        },
+        geography::builder::GeographyBuilder,
+        information_after_dive::builder::InformationAfterDiveBuilder,
+        information_before_dive::builder::InformationBeforeDiveBuilder,
+        last_name::builder::LastNameBuilder,
+        link::builder::LinkBuilder,
+        maker::{builder::MakerBuilder, structure::Maker},
+        manufacturer::builder::ManufacturerBuilder,
+        mix::builder::MixBuilder,
+        owner::builder::OwnerBuilder,
+        personal::builder::PersonalBuilder,
+        profile_data::{builder::ProfileDataBuilder, structure::ProfileData},
+        repetition_group::builder::RepetitionGroupBuilder,
+        samples::builder::SamplesBuilder,
+        site::builder::SiteBuilder,
+        tank_data::builder::TankDataBuilder,
+        tank_pressure::builder::TankPressureBuilder,
+        uddf::{builder::UddfBuilder, structure::Uddf},
+        waypoint::{builder::WaypointBuilder, structure::Waypoint},
+    },
+    utils::math::{convert_bar_to_pascal, convert_celsius_to_kelvin, semicircles_to_degrees},
+};
 
 use super::constants::{
     AVG_DEPTH_TAG, BOTTOM_TIME_TAG, DEPTH_TAG, DIVER_OWNER_ID, DIVE_BASE_ID,
@@ -49,7 +49,7 @@ use super::constants::{
 };
 
 /// Converts Garmin FIT data to UDDF.
-pub fn from_garmin(fit_data_record_vec: Vec<FitDataRecord>) -> Result<Uddf, &'static str> {
+pub fn from_garmin_fit(fit_data_record_vec: Vec<FitDataRecord>) -> Result<Uddf, &'static str> {
     let file_id = find_by_kind_in_fit_data_record_vec(
         &fit_data_record_vec,
         fitparser::profile::MesgNum::FileId,

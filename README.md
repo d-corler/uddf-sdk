@@ -18,7 +18,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-uddf = "0.1"
+uddf-sdk = "0.1"
 ```
 
 Or install it from the command line:

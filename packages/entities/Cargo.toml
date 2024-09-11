@@ -1,8 +1,0 @@
-[package]
-name = "uddf-sdk-entities"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-chrono = { version = "0.4.38", default-features = false, features = ["serde"] }
-serde = { version = "1.0.210", features = ["derive"] }
