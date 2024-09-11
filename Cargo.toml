@@ -2,6 +2,8 @@
 name = "uddf-sdk"
 version = "0.2.0"
 edition = "2021"
+description = "Reading and writing UDDF files"
+license = "GPL-3.0"
 
 [dependencies]
 chrono = { version = "0.4.38", default-features = false }
