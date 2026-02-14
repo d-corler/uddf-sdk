@@ -104,7 +104,7 @@ jobs:
       #   with:
       #     path: artifacts
       #     merge-multiple: true
-      - uses: knope-dev/action@v2.1.0
+      - uses: knope-dev/action@v2.1.2
         with:
           version: 0.13.0
       - run: knope release
